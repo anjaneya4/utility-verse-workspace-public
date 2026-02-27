@@ -1,0 +1,13 @@
+<div class="ui-sidebar">
+  <div class="ui-sidebar__toolbar">
+    <ng-content select="[sidebar-toolbar]"></ng-content>
+  </div>
+
+  <section class="ui-sidebar__scroll" [class.ui-sidebar__scroll--hidden]="!expanded">
+    <ng-content select="[sidebar-content]"></ng-content>
+  </section>
+
+  <section class="ui-sidebar__collapsed" [class.ui-sidebar__collapsed--hidden]="expanded">
+    <ng-content select="[sidebar-collapsed-content]"></ng-content>
+  </section>
+</div>

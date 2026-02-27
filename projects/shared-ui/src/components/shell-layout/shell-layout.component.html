@@ -1,0 +1,34 @@
+<div class="ui-shell" [style.grid-template-columns]="templateColumns">
+  <lib-sidebar
+    class="ui-shell__sidebar"
+    [style.--ui-sidebar-width.px]="sidebarWidth"
+    [class.ui-shell__sidebar--collapsed]="!isExpanded"
+    [expanded]="isExpanded"
+    (pointerenter)="onEnter()"
+    (pointerleave)="onLeave()"
+  >
+    <div sidebar-toolbar class="ui-shell__toolbar">
+      <button
+        type="button"
+        class="ui-shell__pin"
+        [class.ui-shell__pin--active]="pinned"
+        (click)="togglePin()"
+        [attr.aria-label]="pinned ? 'Unpin sidebar' : 'Pin sidebar'"
+        [title]="pinned ? 'Unpin sidebar' : 'Pin sidebar'"
+      >
+        {{ pinned ? 'Unpin' : 'Pin' }}
+      </button>
+    </div>
+
+    <div sidebar-content class="ui-shell__sidebar-content">
+      <ng-content select="[sidebar]"></ng-content>
+    </div>
+    <div sidebar-collapsed-content class="ui-shell__sidebar-collapsed">
+      <ng-content select="[sidebar-collapsed]"></ng-content>
+    </div>
+  </lib-sidebar>
+
+  <main class="ui-shell__content">
+    <ng-content select="[content]"></ng-content>
+  </main>
+</div>

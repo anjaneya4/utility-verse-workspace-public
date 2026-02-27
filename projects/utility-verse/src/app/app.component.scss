@@ -1,0 +1,248 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+:host ::ng-deep .ui-shell {
+  background: linear-gradient(165deg, var(--uv-bg-0), var(--uv-bg-1));
+  color: var(--uv-ink-0);
+}
+
+.sidebar {
+  padding: 0.1rem 0 0.5rem;
+}
+
+.brand-card {
+  display: block;
+  background: transparent;
+}
+
+.brand-eyebrow {
+  margin: 0;
+  color: var(--uv-ink-1);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-title {
+  margin: 0.25rem 0 0;
+  font-size: 1.35rem;
+}
+
+.brand-copy {
+  margin: 0.55rem 0 0;
+  color: var(--uv-ink-1);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.tool-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tool-search-wrap {
+  margin-top: 0.9rem;
+}
+
+.tool-search-wrap lib-input {
+  display: block;
+}
+
+.tool-item {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--uv-ink-0);
+  width: 100%;
+  text-align: left;
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.6rem 0.65rem;
+  cursor: pointer;
+  transition: background-color 0.16s ease;
+}
+
+.tool-item:hover {
+  background: rgba(51, 65, 85, 0.25);
+}
+
+.tool-item.active {
+  background: var(--uv-accent-soft);
+}
+
+.tool-icon {
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--uv-line-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.tool-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tool-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.tool-description {
+  color: var(--uv-ink-1);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.no-results {
+  margin: 0.35rem 0 0;
+  color: var(--uv-ink-1);
+  font-size: 0.75rem;
+}
+
+.main-content {
+  min-width: 0;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.topbar {
+  border-radius: 10px;
+  padding: 0.45rem 0.7rem;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.content-panel {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  border-radius: 10px;
+  padding: 0.55rem;
+  background: rgba(2, 6, 23, 0.22);
+}
+
+.tab-pane {
+  min-height: 100%;
+}
+
+.hidden-pane {
+  display: none;
+}
+
+.empty-state {
+  min-height: 220px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(2, 6, 23, 0.18);
+}
+
+.empty-inner {
+  text-align: center;
+}
+
+.empty-inner-card {
+  display: block;
+  width: min(640px, 100%);
+}
+
+.empty-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--uv-ink-0);
+}
+
+.empty-copy {
+  margin: 0.45rem 0 0;
+  color: var(--uv-ink-1);
+  font-size: 0.8rem;
+}
+
+.empty-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.sidebar-mini {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.3rem 0.65rem;
+}
+
+.mini-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mini-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--uv-line-soft);
+  background: rgba(15, 23, 42, 0.72);
+  color: var(--uv-ink-0);
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.mini-icon:hover {
+  background: rgba(51, 65, 85, 0.55);
+}
+
+.mini-icon.active {
+  border-color: var(--uv-accent);
+  background: rgba(14, 165, 233, 0.2);
+}
+
+.mini-open {
+  color: #93c5fd;
+}
+
+.mini-divider {
+  width: 1.5rem;
+  height: 1px;
+  background: var(--uv-line-soft);
+  margin: 0.2rem 0;
+}
+
+
+@media (max-width: 960px) {
+  .tool-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .sidebar-mini {
+    display: none;
+  }
+}

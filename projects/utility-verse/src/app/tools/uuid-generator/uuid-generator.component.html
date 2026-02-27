@@ -1,0 +1,34 @@
+<section class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+  <header class="mb-4 border-b border-slate-200 pb-3 dark:border-slate-700">
+    <h2 class="text-lg font-semibold">UUID Generator</h2>
+    <p class="text-xs text-slate-500 dark:text-slate-400">Generate RFC 4122 v4 UUIDs in bulk.</p>
+  </header>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <label class="text-xs text-slate-600 dark:text-slate-300">
+      Count
+      <input type="number" min="1" max="50" [value]="count()" (input)="onCountChange($event)" class="ml-2 w-20 rounded-md border border-slate-300 bg-white px-2 py-1 text-xs dark:border-slate-600 dark:bg-slate-800" />
+    </label>
+
+    <label class="inline-flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+      <input type="checkbox" [checked]="upperCase()" (change)="upperCase.set($any($event.target).checked)" class="h-4 w-4" />
+      Uppercase output
+    </label>
+
+    <button type="button" class="rounded-md bg-sky-600 px-3 py-2 text-xs font-semibold text-white" (click)="generate()">Generate</button>
+    <button type="button" class="rounded-md border border-slate-300 px-3 py-2 text-xs font-semibold" (click)="copyAll()">Copy All</button>
+    <button type="button" class="rounded-md border border-slate-300 px-3 py-2 text-xs font-semibold" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="mt-4 rounded-md border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-950">
+    @if (!values().length) {
+      <p class="text-xs text-slate-500 dark:text-slate-400">Generate UUIDs to view them here.</p>
+    } @else {
+      <div class="max-h-72 overflow-auto font-mono text-xs">
+        @for (item of values(); track $index) {
+          <div class="border-b border-slate-100 py-1 dark:border-slate-800">{{ item }}</div>
+        }
+      </div>
+    }
+  </div>
+</section>

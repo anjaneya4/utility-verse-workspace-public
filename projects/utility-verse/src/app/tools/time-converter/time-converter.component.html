@@ -1,0 +1,76 @@
+<section class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+  <header class="mb-4 flex flex-wrap items-end justify-between gap-3 border-b border-slate-200 pb-3 dark:border-slate-700">
+    <div>
+      <h2 class="text-lg font-semibold">Timezone Hub</h2>
+      <p class="text-xs text-slate-500 dark:text-slate-400">Accurate cross-timezone conversion with day-shift and GMT offset details</p>
+    </div>
+
+    <button
+      type="button"
+      class="rounded-md border border-slate-300 px-3 py-2 text-xs font-semibold hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-800"
+      (click)="useNow()"
+    >
+      Use current time
+    </button>
+  </header>
+
+  <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+    <label class="flex flex-col gap-1 text-xs font-medium">
+      <span class="text-slate-600 dark:text-slate-300">Source timezone</span>
+      <select
+        [value]="sourceZone()"
+        (change)="onSourceZoneChange($event)"
+        class="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      >
+        @for (zone of zones; track zone.zone) {
+          <option [value]="zone.zone">{{ zone.label }} ({{ zone.zone }})</option>
+        }
+      </select>
+    </label>
+
+    <label class="flex flex-col gap-1 text-xs font-medium">
+      <span class="text-slate-600 dark:text-slate-300">Source date</span>
+      <input
+        type="date"
+        [value]="sourceDate()"
+        (input)="onDateChange($event)"
+        class="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      />
+    </label>
+
+    <label class="flex flex-col gap-1 text-xs font-medium">
+      <span class="text-slate-600 dark:text-slate-300">Source time</span>
+      <input
+        type="time"
+        [value]="sourceTime()"
+        (input)="onTimeChange($event)"
+        class="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      />
+    </label>
+  </div>
+
+  @if (!conversionState().valid) {
+    <p class="mt-4 rounded-md border border-rose-300 bg-rose-100 px-3 py-2 text-xs text-rose-700 dark:border-rose-800 dark:bg-rose-900/30 dark:text-rose-300">{{ conversionState().error }}</p>
+  } @else {
+    <div class="mt-4 rounded-md border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
+      Source offset: <span class="font-semibold text-slate-800 dark:text-slate-100">{{ conversionState().sourceOffset }}</span>
+    </div>
+
+    <div class="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+      @for (item of convertedResults(); track item.zone) {
+        <article class="rounded-lg border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-950">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{{ item.label }}</p>
+              <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{{ item.zone }}</p>
+            </div>
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">{{ item.offsetLabel }}</span>
+          </div>
+
+          <p class="mt-2 font-mono text-sm font-semibold text-sky-700 dark:text-sky-300">{{ item.localDateTime }}</p>
+          <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{{ item.relativeDay }}</p>
+        </article>
+      }
+    </div>
+  }
+</section>

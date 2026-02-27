@@ -1,0 +1,112 @@
+<lib-shell-layout
+  [collapsed]="true"
+  [hoverExpand]="true"
+  [pinned]="sidebarPinned()"
+  (pinnedChange)="onSidebarPinChange($event)"
+>
+  <aside sidebar class="sidebar">
+    <lib-card class="brand-card" title="UtilityVerse" subtitle="All dev tools in one place.">
+      <p class="brand-eyebrow">UtilityVerse</p>
+    </lib-card>
+
+    <div class="tool-search-wrap">
+      <lib-input
+        type="search"
+        placeholder="Search tools..."
+        [value]="toolSearch()"
+        (valueChange)="onSearchInput($event)"
+      ></lib-input>
+    </div>
+
+    <nav class="tool-list">
+      <button
+        type="button"
+        *ngFor="let tool of filteredTools(); trackBy: trackByTool"
+        class="tool-item"
+        [class.active]="isActiveTool(tool.key)"
+        (click)="openTool(tool, $event)"
+      >
+        <span class="tool-icon">{{ tool.icon }}</span>
+        <span class="tool-text">
+          <span class="tool-label">
+            {{ tool.label }}
+            <lib-badge variant="info">Open</lib-badge>
+          </span>
+          <span class="tool-description">{{ tool.description }}</span>
+        </span>
+      </button>
+
+      <p class="no-results" *ngIf="!filteredTools().length">No tools match your search.</p>
+    </nav>
+  </aside>
+
+  <aside sidebar-collapsed class="sidebar-mini">
+    <div class="mini-group">
+      <button
+        type="button"
+        *ngFor="let tool of tools; trackBy: trackByTool"
+        class="mini-icon"
+        [class.active]="isActiveTool(tool.key)"
+        [attr.aria-label]="tool.label"
+        [title]="tool.label"
+        (click)="openTool(tool, $event)"
+      >
+        {{ tool.icon }}
+      </button>
+    </div>
+
+    <div class="mini-divider"></div>
+
+    <div class="mini-group">
+      <button
+        type="button"
+        *ngFor="let tab of openTabs(); trackBy: trackByTab"
+        class="mini-icon mini-open"
+        [class.active]="activeTabId() === tab.id"
+        [attr.aria-label]="tab.title"
+        [title]="tab.title"
+        (click)="switchTab(tab.id)"
+      >
+        {{ tab.icon }}
+      </button>
+    </div>
+  </aside>
+
+  <main content class="main-content">
+    <header class="topbar">
+      <lib-tabs-bar
+        [tabs]="tabItems()"
+        [activeId]="activeTabId()"
+        [showCloseAll]="openTabs().length > 1"
+        emptyMessage="Select a tool to begin."
+        (tabSelected)="switchTab($event)"
+        (tabClosed)="closeTab($event)"
+        (closeAllRequested)="closeAllTabs()"
+      ></lib-tabs-bar>
+    </header>
+
+    <section class="content-panel" *ngIf="openTabs().length; else emptyState">
+      <div
+        *ngFor="let tab of openTabs(); trackBy: trackByTab"
+        class="tab-pane"
+        [class.hidden-pane]="activeTabId() !== tab.id"
+      >
+        <ng-container *ngComponentOutlet="tab.component"></ng-container>
+      </div>
+    </section>
+
+    <ng-template #emptyState>
+      <section class="empty-state">
+        <lib-card class="empty-inner-card" title="No Tool Open Yet" subtitle="Pick a tool from the left, or start quickly with one of these:">
+          <div class="empty-actions">
+            <lib-button variant="primary" size="sm" (pressed)="openTool(tools[2], $event)">JSON Compare</lib-button>
+            <lib-button variant="secondary" size="sm" (pressed)="openTool(tools[1], $event)">Base64 Converter</lib-button>
+            <lib-button variant="ghost" size="sm" (pressed)="openTool(tools[0], $event)">Time Converter</lib-button>
+          </div>
+        </lib-card>
+      </section>
+    </ng-template>
+  </main>
+</lib-shell-layout>
+
+<lib-bubble-feedback [x]="bubbleX()" [y]="bubbleY()" [trigger]="bubbleTick()"></lib-bubble-feedback>

@@ -1,0 +1,29 @@
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid #334155;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.64rem;
+  line-height: 1.2;
+  color: #cbd5e1;
+}
+
+.ui-badge--neutral {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.ui-badge--info {
+  background: rgba(14, 165, 233, 0.16);
+  color: #bae6fd;
+}
+
+.ui-badge--success {
+  background: rgba(16, 185, 129, 0.16);
+  color: #bbf7d0;
+}
+
+.ui-badge--warning {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fde68a;
+}

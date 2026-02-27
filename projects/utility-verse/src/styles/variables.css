@@ -1,0 +1,11 @@
+:root {
+  --uv-bg-0: #0b1220;
+  --uv-bg-1: #111827;
+  --uv-sidebar-bg: #0f172a;
+  --uv-ink-0: #e2e8f0;
+  --uv-ink-1: #94a3b8;
+  --uv-line: #243244;
+  --uv-line-soft: #334155;
+  --uv-accent: #0ea5e9;
+  --uv-accent-soft: rgba(14, 165, 233, 0.16);
+}

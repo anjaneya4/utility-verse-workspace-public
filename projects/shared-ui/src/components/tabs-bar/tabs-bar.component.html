@@ -1,0 +1,28 @@
+<div class="ui-tabs" *ngIf="tabs.length; else empty">
+  <div class="ui-tabs__list">
+    <button
+      type="button"
+      *ngFor="let tab of tabs; trackBy: trackById"
+      class="ui-tab"
+      [class.ui-tab--active]="activeId === tab.id"
+      (click)="select(tab.id)"
+    >
+      <span class="ui-tab__icon" *ngIf="tab.icon">{{ tab.icon }}</span>
+      <span class="ui-tab__title">{{ tab.title }}</span>
+      <span class="ui-tab__close" (click)="close(tab.id, $event)" [attr.aria-label]="'Close ' + tab.title">x</span>
+    </button>
+  </div>
+
+  <button
+    type="button"
+    class="ui-tabs__close-all"
+    *ngIf="showCloseAll"
+    (click)="closeAll($event)"
+  >
+    Close all
+  </button>
+</div>
+
+<ng-template #empty>
+  <p class="ui-tabs__empty">{{ emptyMessage }}</p>
+</ng-template>

@@ -1,0 +1,9 @@
+<article class="ui-card" [class.ui-card--compact]="compact">
+  <header class="ui-card__header" *ngIf="title || subtitle">
+    <h3 class="ui-card__title" *ngIf="title">{{ title }}</h3>
+    <p class="ui-card__subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+  </header>
+  <section class="ui-card__body">
+    <ng-content></ng-content>
+  </section>
+</article>

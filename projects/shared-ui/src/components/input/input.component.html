@@ -1,0 +1,22 @@
+<label class="ui-input-wrap" *ngIf="label; else noLabel">
+  <span class="ui-input-label">{{ label }}</span>
+  <input
+    class="ui-input"
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+  />
+</label>
+
+<ng-template #noLabel>
+  <input
+    class="ui-input"
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+  />
+</ng-template>

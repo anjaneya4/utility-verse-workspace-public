@@ -14,6 +14,18 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
+    "paths": {
+      "shared-core": [
+        "./dist/shared-core"
+      ],
+      "shared-ui": [
+        "./projects/shared-ui/src/public-api.ts",
+        "./dist/shared-ui"
+      ],
+      "shared-utils": [
+        "./dist/shared-utils"
+      ]
+    },
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022"

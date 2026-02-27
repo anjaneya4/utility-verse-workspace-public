@@ -1,0 +1,30 @@
+.ui-card {
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.72);
+  color: #e2e8f0;
+  padding: 0.9rem;
+}
+
+.ui-card--compact {
+  padding: 0.65rem;
+}
+
+.ui-card__header {
+  margin-bottom: 0.6rem;
+}
+
+.ui-card__title {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ui-card__subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.ui-card__body {
+  min-width: 0;
+}
